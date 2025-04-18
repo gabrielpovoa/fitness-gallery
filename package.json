@@ -1,0 +1,23 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "description": "Nodejs template with typescript, nodmon and env file implemented",
+  "license": "ISC",
+  "author": "João Póvoa",
+  "type": "commonjs",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "nodemon": "^3.1.9"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
