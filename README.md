@@ -116,9 +116,12 @@
 
 ### Gallery Routes
 
-- **POST /gallery** - Create new gallery
-- **GET /gallery** - List all galleries
+- **POST /galleries** - Create new gallery
+
+- **GET /galleries** - List all galleries
 - **GET /gallery/:id** - Retrieve a specific gallery
+
+- **POST /upload/** - Upload a photo into a gallery
 
 ---
 
