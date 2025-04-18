@@ -1,85 +1,154 @@
-# 🚀 Node.js Basic API
+# 🏋️‍♂️ Fitness Gallery
 
-Este é um projeto básico de API utilizando **Node.js**, **Express** e **TypeScript**, com suporte a variáveis de ambiente, segurança com `helmet`, reinicialização automática com `nodemon` e tipagem forte via TypeScript. O fluxo de versionamento segue o modelo **Git Flow**.
-
----
-
-## 📦 Tecnologias e Dependências
-
-### Dependências principais:
-- [express](https://expressjs.com/) — framework minimalista e flexível
-- [dotenv](https://www.npmjs.com/package/dotenv) — para utilizar variáveis de ambiente
-- [helmet](https://helmetjs.github.io/) — proteção contra vulnerabilidades HTTP
-- [nodemon](https://nodemon.io/) — reinicialização automática durante o desenvolvimento
-
-### Dependências de desenvolvimento:
-- [typescript](https://www.typescriptlang.org/) — superset do JavaScript com tipagem
-- [ts-node](https://typestrong.org/ts-node/) — executa arquivos `.ts` diretamente
-- [@types/express](https://www.npmjs.com/package/@types/express) — definições de tipos para o Express
+**Fitness Gallery** is a Node.js and Express-based application designed to manage and showcase fitness galleries. It allows users to create, view, and manage galleries, providing a platform to share fitness-related content.
 
 ---
 
+## 📚 Table of Contents
 
-
-## 🛠 Scripts
-
-### Iniciar a aplicação em modo de desenvolvimento:
-```bash
-npm run dev
-```
-
-## 🌐 Rotas Disponíveis
-> GET /hello
-
-Retorna uma saudação simples.
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [API Endpoints](#api-endpoints)
+- [Database Configuration](#database-configuration)
+- [Security Considerations](#security-considerations)
 
 ---
 
-## 🔁 Git Flow
+## ✨ Features
 
-Este projeto utiliza o fluxo de versionamento Git Flow, com os seguintes ramos principais:
+- Create and manage fitness galleries.
+- RESTful API architecture.
+- Secure environment variable management using `dotenv`.
+- Middleware integration for enhanced security and functionality.
+- Static file serving for frontend assets.
 
-| Branch         | Finalidade                     |
-|----------------|--------------------------------|
-| `main`         | Código de produção             |
-| `develop`      | Ambiente de desenvolvimento    |
-| `feature/*`    | Novas funcionalidades          |
-| `hotfix/*`     | Correções emergenciais         |
-| `release/*`    | Preparação para novo release   |
+---
 
+## 🛠️ Technologies Used
 
-## Como iniciar o Git Flow:
-``` cmd
-git flow init
+- **Backend:**
+  - [Node.js](https://nodejs.org/)
+  - [Express](https://expressjs.com/)
+  - [TypeScript](https://www.typescriptlang.org/)
+
+- **ORM & Database:**
+  - [Prisma](https://www.prisma.io/) - Next-generation ORM for Node.js and TypeScript.
+  - [MySQL](https://www.mysql.com/) - Relational database management system.
+
+- **Middleware & Utilities:**
+  - [dotenv](https://www.npmjs.com/package/dotenv)
+  - [helmet](https://www.npmjs.com/package/helmet)
+  - [cors](https://www.npmjs.com/package/cors)
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) installed.
+- [MySQL](https://www.mysql.com/) database setup.
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/gabrielpovoa/fitness-gallery.git
+   cd fitness-gallery
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Configure environment variables:
+
+   Create a `.env` file and add:
+
+   ```env
+   PORT=3000
+   DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE_NAME"
+   ```
+
+4. Initialize Prisma:
+
+   ```bash
+   npx prisma init
+   ```
+
+5. Define your data model in `prisma/schema.prisma`:
+
+   ```prisma
+   datasource db {
+     provider = "mysql"
+     url      = env("DATABASE_URL")
+   }
+
+   generator client {
+     provider = "prisma-client-js"
+   }
+
+   model Gallery {
+     id    Int    @id @default(autoincrement())
+     title String
+   }
+   ```
+
+6. Run migrations:
+
+   ```bash
+   npx prisma migrate dev --name init
+   ```
+
+7. Start the application:
+
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 📡 API Endpoints
+
+### Gallery Routes
+
+- **POST /gallery** - Create new gallery
+- **GET /gallery** - List all galleries
+- **GET /gallery/:id** - Retrieve a specific gallery
+
+---
+
+## 🗄️ Database Configuration
+
+Prisma schema in `prisma/schema.prisma`:
+
+```prisma
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Gallery {
+  id    Int    @id @default(autoincrement())
+  title String
+}
 ```
 
 ---
 
-## 📦 Instalação
+## 🔐 Security Considerations
 
-1. Crie um repositório a partir deste template:
+- Environment variables for sensitive data
+- `helmet` to set secure headers
+- `cors` for cross-origin resource control
+- Validation and error handling best practices
 
-Clique em **"Use this template"** no GitHub, ou acesse diretamente:
-
-```bash
-https://github.com/gabrielpovoa/nodejs-template/generate
-```
-2. Clone o repositório criado:
-```bash
-    git clone https://github.com/seu-usuario/nome-do-seu-repo.git
-    cd nome-do-seu-repo
-```
-3. Instale as dependências:
-```cmd
-    npm install
-```
-4. Renomeie o arquivo .env-example para .env (se necessário):
-```.env
-    PORT=3000
-```
-5. Inicie a aplicação:
-```cmd
-    npm run dev
-``` 
-
-O seu servidor vai estar rodando em `https:/localhost:<PORT || 3000>`
+---
